@@ -1,0 +1,15 @@
+{
+  "name": "wenpai-org/wptongji-code",
+  "authors": [
+    {
+      "name": "WenPai.org",
+      "email": "support@feibisi.com"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "classmap": [
+      "src/"
+    ]
+  }
+}
