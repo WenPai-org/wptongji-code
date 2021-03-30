@@ -1,6 +1,8 @@
 <?php
 /**
  * 插件核心功能
+ *
+ * @package WenPai\TongJi
  */
 
 namespace WenPai\TongJi\Src;
@@ -16,6 +18,7 @@ use WenPai\TongJi\Src\Service\Service_Meta;
 class Core {
 
     public function __construct( array $services ) {
+        $services = $this->servce_order( $services );
         foreach ( $services as $service ) {
             $meta = new Service_Meta();
             $meta->set_name( $service['service'] ?? '' );
@@ -29,6 +32,21 @@ class Core {
                 $service_obj->register_hook();
             }
         }
+    }
+
+    private function servce_order( array $services ): array {
+        $len = count($services);
+        for( $i = 1; $i < $len; $i++ ) {
+            for( $j = 0; $j < $len - $i; $j++ ){
+                if( $services[$j]['level'] < $services[$j + 1]['level'] ) {
+                    $tmp = $services[$j];
+                    $services[$j]   = $services[$j+1];
+                    $services[$j+1] = $tmp;
+                }
+            }
+        }
+
+        return $services;
     }
 
 }
