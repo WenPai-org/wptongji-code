@@ -24,11 +24,10 @@ class Core {
             $meta->set_name( $service['service'] ?? '' );
             $meta->set_id( $service['id'] ?? '' );
             $meta->set_position( $service['position'] ?? '' );
-            $meta->set_level( (int)$service['position'] ?? 1 );
+            $meta->set_level( (int)$service['level'] ?? 1 );
 
             $service_obj = Service_Factory::get_service( $meta );
             if ( $service_obj ) {
-
                 $service_obj->register_hook();
             }
         }
