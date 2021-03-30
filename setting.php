@@ -43,7 +43,14 @@ Setting::create_section( WPTJ_PREFIX, array(
                         'type'        => 'text',
                         'label'       => '统计ID',
                         'placeholder' => '51c7408*************ad45aa19d',
-                        'desc'        => 'help',
+                        'desc'        => <<<html
+<ul>
+    <li>百度统计的ID获取方法参考：https://xxx.com</li>
+    <li style="display: none;">CNZZ统计的ID获取方法参考：https://xxx.com</li>
+    <li style="display: none;">谷歌统计的ID获取方法参考：https://xxx.com</li>
+    <li style="display: none;">必应统计的ID获取方法参考：https://xxx.com</li>
+</ul>
+html
                     ),
                     array(
                         'name'    => 'position',
@@ -68,6 +75,18 @@ Setting::create_section( WPTJ_PREFIX, array(
         ),
     ),
 ) );
+
+add_action( 'admin_footer', function () {
+    echo <<<html
+<script>
+$('section.card select').change(function () {
+    var i = $(this).get(0).selectedIndex;
+    $(this).addClass('select').siblings().removeClass('select');
+    $(this).parent().parent().next().find("aside ul li ").eq(i).show().siblings().hide();
+});
+</script>
+html;
+} );
 
 function wptj_get_option( string $option, string $section, $default = '' ) {
     $options = get_option( WPTJ_PREFIX . "_{$section}" );
