@@ -12,6 +12,7 @@ class ComposerStaticInit30186b113c2c2fe34b113c8cf0d2ff37
         'WenPai\\TongJi\\Src\\Factory\\Service_Factory' => __DIR__ . '/../..' . '/src/factory/class-service-factory.php',
         'WenPai\\TongJi\\Src\\Service\\Baidu_Service' => __DIR__ . '/../..' . '/src/service/class-baidu-service.php',
         'WenPai\\TongJi\\Src\\Service\\Base_Service' => __DIR__ . '/../..' . '/src/service/class-base-service.php',
+        'WenPai\\TongJi\\Src\\Service\\Cnzz_Service' => __DIR__ . '/../..' . '/src/service/class-cnzz-service.php',
         'WenPai\\TongJi\\Src\\Service\\Service' => __DIR__ . '/../..' . '/src/service/interface-service.php',
         'WenPai\\TongJi\\Src\\Service\\Service_Meta' => __DIR__ . '/../..' . '/src/service/class-service-meta.php',
     );
