@@ -13,10 +13,12 @@ use WenPai\TongJi\Src\Core;
 require_once 'vendor/autoload.php';
 
 /** 载入设置项 */
-require_once 'setting.php';
+if ( is_admin() && ! ( defined('DOING_AJAX' ) && DOING_AJAX) ) {
+    require_once 'setting.php';
+}
 
 /** 载入框架核心功能 */
-if ( ! is_admin() && ! (defined('DOING_AJAX') && DOING_AJAX) ) {
+if ( ! is_admin() && ! ( defined('DOING_AJAX' ) && DOING_AJAX) ) {
     $core = new Core(
         wptj_get_option( 'services', 'wptj', [] )
     );
