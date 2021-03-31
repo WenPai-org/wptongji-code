@@ -17,12 +17,12 @@ require_once 'src/func.php';
 
 /** 载入设置项 */
 if ( is_admin() && ! ( defined('DOING_AJAX' ) && DOING_AJAX) ) {
-    require_once 'setting.php';
+    require_once 'src/setting.php';
 }
 
 /** 载入框架核心功能 */
 if ( ! is_admin() && ! ( defined('DOING_AJAX' ) && DOING_AJAX) ) {
     $core = new Core(
-        wptj_get_option( 'services', 'wptj', [] )
+        wptj_get_option( 'services', 'wptj', array() )
     );
 }
