@@ -83,7 +83,8 @@ html
 add_action( 'admin_footer', function () {
     echo <<<html
 <script>
-$("section.card select option:selected").each(function(){
+function selectedIndex(){
+$("section.card select option:selected").each(function (){
        var i = $(this).index();
        $(this).parent().parent().parent().next().find("li").eq(i).show().siblings().hide();
 })
@@ -92,6 +93,11 @@ $('section.card select').change(function () {
     $(this).addClass('select').siblings().removeClass('select');
     $(this).parent().parent().next().find("aside ul li ").eq(i).show().siblings().hide();
 });
+};
+selectedIndex();
+$('.add-card').on('click', function () {
+selectedIndex();
+})
 </script>
 html;
 } );
