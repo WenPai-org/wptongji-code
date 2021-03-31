@@ -5,7 +5,7 @@
  * @package WenPai\TongJi
  */
 
-namespace WenPai\TongJi;
+namespace WenPai\TongJi\Src;
 
 use Wenpai\Framework\Setting;
 
