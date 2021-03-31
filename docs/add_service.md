@@ -11,5 +11,7 @@
 ## 自定义服务商
 
 自定义服务商一共分两步：
- 1. 是在设置页(src/setting.php)中添加服务商设置信息
+ 1. 在设置页(src/setting.php)中添加服务商设置信息
  2. 从(src/service/Base_Service.php)派生出一个服务商子类，具体编写可以参考(src/service/Baidu_Service.php)。
+
+完成以上两步就可以了，设置页中的服务商信息会作为工厂类生成服务商对象的依据。
