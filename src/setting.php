@@ -7,7 +7,7 @@
 
 namespace WenPai\TongJi\Src;
 
-use Wenpai\Framework\Setting;
+use WenPai\Framework\Setting;
 
 Setting::create_options( WPTJ_PREFIX, array(
     'menu_title' => '文派统计',
