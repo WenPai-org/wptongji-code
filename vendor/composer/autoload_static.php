@@ -8,13 +8,17 @@ class ComposerStaticInit30186b113c2c2fe34b113c8cf0d2ff37
 {
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'WenPai\\Framework\\Fields' => __DIR__ . '/../..' . '/framework/class-fields.php',
+        'WenPai\\Framework\\Meta_Box' => __DIR__ . '/../..' . '/framework/class-meta-box.php',
+        'WenPai\\Framework\\Setting' => __DIR__ . '/../..' . '/framework/class-setting.php',
+        'WenPai\\Framework\\Widget' => __DIR__ . '/../..' . '/framework/class-widget.php',
         'WenPai\\TongJi\\Src\\Core' => __DIR__ . '/../..' . '/src/class-core.php',
         'WenPai\\TongJi\\Src\\Factory\\Service_Factory' => __DIR__ . '/../..' . '/src/factory/class-service-factory.php',
         'WenPai\\TongJi\\Src\\Service\\Baidu_Service' => __DIR__ . '/../..' . '/src/service/class-baidu-service.php',
         'WenPai\\TongJi\\Src\\Service\\Base_Service' => __DIR__ . '/../..' . '/src/service/class-base-service.php',
-        'WenPai\\TongJi\\Src\\Service\\Bing_Service' => __DIR__ . '/../..' . '/src/service/class-bing-service.php',
         'WenPai\\TongJi\\Src\\Service\\Cnzz_Service' => __DIR__ . '/../..' . '/src/service/class-cnzz-service.php',
         'WenPai\\TongJi\\Src\\Service\\Google_Service' => __DIR__ . '/../..' . '/src/service/class-google-service.php',
+        'WenPai\\TongJi\\Src\\Service\\La51_Service' => __DIR__ . '/../..' . '/src/service/class-la51-service.php',
         'WenPai\\TongJi\\Src\\Service\\Service' => __DIR__ . '/../..' . '/src/service/interface-service.php',
         'WenPai\\TongJi\\Src\\Service\\Service_Meta' => __DIR__ . '/../..' . '/src/service/class-service-meta.php',
     );

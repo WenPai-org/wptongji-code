@@ -7,13 +7,17 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'WenPai\\Framework\\Fields' => $baseDir . '/framework/class-fields.php',
+    'WenPai\\Framework\\Meta_Box' => $baseDir . '/framework/class-meta-box.php',
+    'WenPai\\Framework\\Setting' => $baseDir . '/framework/class-setting.php',
+    'WenPai\\Framework\\Widget' => $baseDir . '/framework/class-widget.php',
     'WenPai\\TongJi\\Src\\Core' => $baseDir . '/src/class-core.php',
     'WenPai\\TongJi\\Src\\Factory\\Service_Factory' => $baseDir . '/src/factory/class-service-factory.php',
     'WenPai\\TongJi\\Src\\Service\\Baidu_Service' => $baseDir . '/src/service/class-baidu-service.php',
     'WenPai\\TongJi\\Src\\Service\\Base_Service' => $baseDir . '/src/service/class-base-service.php',
-    'WenPai\\TongJi\\Src\\Service\\Bing_Service' => $baseDir . '/src/service/class-bing-service.php',
     'WenPai\\TongJi\\Src\\Service\\Cnzz_Service' => $baseDir . '/src/service/class-cnzz-service.php',
     'WenPai\\TongJi\\Src\\Service\\Google_Service' => $baseDir . '/src/service/class-google-service.php',
+    'WenPai\\TongJi\\Src\\Service\\La51_Service' => $baseDir . '/src/service/class-la51-service.php',
     'WenPai\\TongJi\\Src\\Service\\Service' => $baseDir . '/src/service/interface-service.php',
     'WenPai\\TongJi\\Src\\Service\\Service_Meta' => $baseDir . '/src/service/class-service-meta.php',
 );

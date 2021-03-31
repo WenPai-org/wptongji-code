@@ -9,7 +9,8 @@
   "require": {},
   "autoload": {
     "classmap": [
-      "src/"
+      "src/",
+      "framework/"
     ]
   }
 }
