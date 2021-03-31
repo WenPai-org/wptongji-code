@@ -11,7 +11,9 @@ return array(
     'WenPai\\TongJi\\Src\\Factory\\Service_Factory' => $baseDir . '/src/factory/class-service-factory.php',
     'WenPai\\TongJi\\Src\\Service\\Baidu_Service' => $baseDir . '/src/service/class-baidu-service.php',
     'WenPai\\TongJi\\Src\\Service\\Base_Service' => $baseDir . '/src/service/class-base-service.php',
+    'WenPai\\TongJi\\Src\\Service\\Bing_Service' => $baseDir . '/src/service/class-bing-service.php',
     'WenPai\\TongJi\\Src\\Service\\Cnzz_Service' => $baseDir . '/src/service/class-cnzz-service.php',
+    'WenPai\\TongJi\\Src\\Service\\Google_Service' => $baseDir . '/src/service/class-google-service.php',
     'WenPai\\TongJi\\Src\\Service\\Service' => $baseDir . '/src/service/interface-service.php',
     'WenPai\\TongJi\\Src\\Service\\Service_Meta' => $baseDir . '/src/service/class-service-meta.php',
 );
