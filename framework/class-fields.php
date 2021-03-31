@@ -62,9 +62,10 @@ if ( ! class_exists( Fields::class ) ) {
          * @param string $default 默认值
          * @return array|string
          */
-        public function get_option( string $option, string $prefix, string $section, $default = '' ) {
-            $options = get_option( "{$prefix}_{$section}" );
+        public function get_option( string $option, string $prefix, string $section, $default = '', $network = false ) {
+            $network = is_multisite() && $network;
 
+            $options = $network ? get_site_option( "{$prefix}_{$section}") : get_option( "{$prefix}_{$section}" );
             if ( isset( $options[ $option ] ) ) {
                 return $options[ $option ];
             }
@@ -92,6 +93,7 @@ if ( ! class_exists( Fields::class ) ) {
                 'options'     => '',
                 'std'         => '',
                 'html'        => '',
+                'network'     => false,
                 'fields'      => [],
             );
 
@@ -113,7 +115,7 @@ if ( ! class_exists( Fields::class ) ) {
         public function callback_text( array $args ) {
             $value = $size = $name = '';
             if ( self::Setting === $this->type ) {
-                $value = self::get_option( $args['name'], $args['prefix'], $args['section'], $args['default'] );
+                $value = self::get_option( $args['name'], $args['prefix'], $args['section'], $args['default'], $args['network'] );
                 $size  = isset( $args['size'] ) && ! empty( $args['size'] ) ? $args['size'] : 'regular';
                 $size  .= '-text';
                 $name  = "{$args['prefix']}_{$args['section']}[{$args['name']}]";
@@ -127,6 +129,22 @@ if ( ! class_exists( Fields::class ) ) {
             $html = sprintf( '<input type="text" class="%1$s" id="%2$s" name="%2$s" value="%3$s"%4$s/>',
                 $size, $name, $value, $placeholder );
             $html .= self::_get_field_description( $args );
+
+            echo $html;
+        }
+
+        public function callback_number( $args ) {
+            $name  = "{$args['prefix']}_{$args['section']}[{$args['name']}]";
+            $value = self::get_option( $args['name'], $args['prefix'], $args['section'], $args['default'], $args['network'] );
+            $size        = isset( $args['size'] ) && !empty( $args['size'] ) ? $args['size'] : 'regular';
+            $type        = isset( $args['type'] ) ? $args['type'] : 'number';
+            $placeholder = empty( $args['placeholder'] ) ? '' : ' placeholder="' . $args['placeholder'] . '"';
+            $min         = ( $args['min'] == '' ) ? '' : ' min="' . $args['min'] . '"';
+            $max         = ( $args['max'] == '' ) ? '' : ' max="' . $args['max'] . '"';
+            $step        = ( $args['step'] == '' ) ? '' : ' step="' . $args['step'] . '"';
+
+            $html        = sprintf( '<input type="%1$s" class="%2$s-number" id="%3$s" name="%3$s" value="%4$s"%5$s%6$s%7$s%8$s/>', $type, $size, $name, $value, $placeholder, $min, $max, $step );
+            $html       .= $this->_get_field_description( $args );
 
             echo $html;
         }
@@ -145,7 +163,7 @@ if ( ! class_exists( Fields::class ) ) {
         public function callback_password( array $args ) {
             $value = $size = $name = '';
             if ( self::Setting === $this->type ) {
-                $value = self::get_option( $args['name'], $args['prefix'], $args['section'] );
+                $value = self::get_option( $args['name'], $args['prefix'], $args['section'], $args['default'], $args['network'] );
                 $size  = isset( $args['size'] ) && ! empty( $args['size'] ) ? $args['size'] : 'regular';
                 $size  .= '-text';
                 $name  = "{$args['prefix']}_{$args['section']}[{$args['name']}]";
@@ -178,7 +196,7 @@ if ( ! class_exists( Fields::class ) ) {
         public function callback_select( $args ) {
             $value = $size = $name = '';
             if ( self::Setting === $this->type ) {
-                $value = self::get_option( $args['name'], $args['prefix'], $args['section'], $args['default'] );
+                $value = self::get_option( $args['name'], $args['prefix'], $args['section'], $args['default'], $args['network'] );
                 $size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
                 $name  = "{$args['prefix']}_{$args['section']}[{$args['name']}]";
             } elseif ( self::Widget === $this->type || self::Meta_Box === $this->type ) {
@@ -213,7 +231,7 @@ if ( ! class_exists( Fields::class ) ) {
         public function callback_switcher( $args ) {
             $value = $size = $name = '';
             if ( self::Setting === $this->type ) {
-                $value = self::get_option( $args['name'], $args['prefix'], $args['section'], $args['default'] );
+                $value = self::get_option( $args['name'], $args['prefix'], $args['section'], $args['default'], $args['network'] );
                 $name  = "{$args['prefix']}_{$args['section']}[{$args['name']}]";
             } elseif ( self::Widget === $this->type || self::Meta_Box === $this->type ) {
                 $value = $args['value'];
@@ -245,7 +263,7 @@ if ( ! class_exists( Fields::class ) ) {
         public function callback_checkbox( $args ) {
             $value = $size = $name = '';
             if ( self::Setting === $this->type ) {
-                $value = self::get_option( $args['name'], $args['prefix'], $args['section'], $args['std'] );
+                $value = self::get_option( $args['name'], $args['prefix'], $args['section'], $args['std'], $args['network']  );
                 $name  = "{$args['prefix']}_{$args['section']}[{$args['name']}]";
             } elseif ( self::Widget === $this->type || self::Meta_Box === $this->type ) {
                 $value = $args['value'];
@@ -282,7 +300,7 @@ if ( ! class_exists( Fields::class ) ) {
         public function callback_radio( $args ) {
             $value = $size = $name = '';
             if ( self::Setting === $this->type ) {
-                $value = self::get_option( $args['name'], $args['prefix'], $args['section'], $args['default'] );
+                $value = self::get_option( $args['name'], $args['prefix'], $args['section'], $args['default'], $args['network'] );
                 $name  = "{$args['prefix']}_{$args['section']}[{$args['name']}]";
             } elseif ( self::Widget === $this->type || self::Meta_Box === $this->type ) {
                 $value = $args['value'];
@@ -317,7 +335,7 @@ if ( ! class_exists( Fields::class ) ) {
         public function callback_textarea( $args ) {
             $value = $size = $name = '';
             if ( self::Setting === $this->type ) {
-                $value = self::get_option( $args['name'], $args['prefix'], $args['section'], $args['std'] );
+                $value = self::get_option( $args['name'], $args['prefix'], $args['section'], $args['std'], $args['network'] );
                 $name  = "{$args['prefix']}_{$args['section']}[{$args['name']}]";
                 $size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
             } elseif ( self::Widget === $this->type || self::Meta_Box === $this->type ) {
@@ -361,7 +379,7 @@ if ( ! class_exists( Fields::class ) ) {
         public function callback_color( $args ) {
             $value = $size = $name = '';
             if ( self::Setting === $this->type ) {
-                $value = self::get_option( $args['name'], $args['prefix'], $args['section'], $args['default'] );
+                $value = self::get_option( $args['name'], $args['prefix'], $args['section'], $args['default'], $args['network'] );
                 $name  = "{$args['prefix']}_{$args['section']}[{$args['name']}]";
                 $size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
             } elseif ( self::Widget === $this->type || self::Meta_Box === $this->type ) {
@@ -390,7 +408,7 @@ if ( ! class_exists( Fields::class ) ) {
         public function callback_file( $args ) {
             $value = $size = $name = '';
             if ( self::Setting === $this->type ) {
-                $value = self::get_option( $args['name'], $args['prefix'], $args['section'], $args['std'] );
+                $value = self::get_option( $args['name'], $args['prefix'], $args['section'], $args['std'], $args['network'] );
                 $name  = "{$args['prefix']}_{$args['section']}[{$args['name']}]";
                 $size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
             } elseif ( self::Widget === $this->type || self::Meta_Box === $this->type ) {
@@ -421,7 +439,7 @@ if ( ! class_exists( Fields::class ) ) {
         public function callback_tinymce( $args ) {
             $value = $size = $name = '';
             if ( self::Setting === $this->type ) {
-                $value = self::get_option( $args['name'], $args['prefix'], $args['section'], $args['std'] );
+                $value = self::get_option( $args['name'], $args['prefix'], $args['section'], $args['std'], $args['network']  );
                 $name  = "{$args['prefix']}_{$args['section']}[{$args['name']}]";
                 $size  = isset( $args['size'] ) && ! empty( $args['size'] ) ? $args['size'] : '500px';
             } elseif ( self::Widget === $this->type || self::Meta_Box === $this->type ) {
@@ -450,7 +468,7 @@ if ( ! class_exists( Fields::class ) ) {
         }
 
         function callback_card( $args ) {
-            $value = $this->get_option( $args['name'], $args['prefix'], $args['section'], $args['default'] );
+            $value = $this->get_option( $args['name'], $args['prefix'], $args['section'], $args['default'], $args['network'] );
             if ( ! empty( $value ) ) {
                 foreach ( $value as $card_id => $card ) {
                     echo '<section class="card">';
@@ -461,6 +479,7 @@ if ( ! class_exists( Fields::class ) ) {
                         $field['prefix']  = $args['prefix'];
                         $field['section'] = sprintf( '%s[%s][%s]', $args['section'], $args['name'], $card_id ) ?? '';
                         $field['default'] = @$card[ $field['name'] ];
+                        $field['network'] = $args['network'];
 
                         $field = $this->parse_field_array( $field );
 
@@ -549,6 +568,7 @@ if ( ! class_exists( Fields::class ) ) {
                 $(this).parent().parent().remove();
               })
             }
+            bindListener();
           </script>
             <?php
         }
