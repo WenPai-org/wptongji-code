@@ -46,9 +46,9 @@ Setting::create_section( WPTJ_PREFIX, array(
                         'desc'        => <<<html
 <ul style="margin-top: 5px; color: #646970;">
     <li>查看帮助：<a href="https://wptongji.com/blog/baidu-tongji">百度统计ID的获取方法</a></li>
-    <li>查看帮助：<a href="https://wptongji.com/blog/cnzz-tongji">CNZZ统计ID的获取方法</a></li>
-    <li>查看帮助：<a href="https://wptongji.com/blog/google-analytics">谷歌统计ID的获取方法</a></li>
-    <li>查看帮助：<a href="https://wptongji.com/blog/51la-tongji">51啦统计ID的获取方法</a></li>
+    <li style="display: none;">查看帮助：<a href="https://wptongji.com/blog/cnzz-tongji">CNZZ统计ID的获取方法</a></li>
+    <li style="display: none;">查看帮助：<a href="https://wptongji.com/blog/google-analytics">谷歌统计ID的获取方法</a></li>
+    <li style="display: none;">查看帮助：<a href="https://wptongji.com/blog/51la-tongji">51啦统计ID的获取方法</a></li>
 </ul>
 html
                     ),
@@ -83,6 +83,10 @@ html
 add_action( 'admin_footer', function () {
     echo <<<html
 <script>
+$("section.card select option:selected").each(function(){
+       var i = $(this).index();
+       $(this).parent().parent().parent().next().find("li").eq(i).show().siblings().hide();
+})
 $('section.card select').change(function () {
     var i = $(this).get(0).selectedIndex;
     $(this).addClass('select').siblings().removeClass('select');
