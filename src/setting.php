@@ -35,7 +35,7 @@ Setting::create_section( WPTJ_PREFIX, array(
                             'Baidu'  => '百度',
                             'Cnzz'   => 'CNZZ',
                             'Google' => '谷歌',
-                            '51la'   => '51啦',
+                            'La51'   => '51啦',
                         )
                     ),
                     array(
