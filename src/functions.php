@@ -6,7 +6,7 @@
  */
 
 function wptj_get_option( string $option, string $section, $default = '' ) {
-    $options = get_option( WPTJ_PREFIX . "_{$section}" );
+    $options = is_multisite() ? get_site_option( WPTJ_PREFIX . "_{$section}") : get_option( WPTJ_PREFIX . "_{$section}" );
 
     if ( isset( $options[ $option ] ) ) {
         return $options[ $option ];
