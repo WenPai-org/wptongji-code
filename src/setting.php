@@ -35,7 +35,7 @@ Setting::create_section( WPTJ_PREFIX, array(
                             'Baidu'  => '百度',
                             'Cnzz'   => 'CNZZ',
                             'Google' => '谷歌',
-                            'Bing'   => '必应',
+                            '51la'   => '51啦',
                         )
                     ),
                     array(
@@ -44,11 +44,11 @@ Setting::create_section( WPTJ_PREFIX, array(
                         'label'       => '统计ID',
                         'placeholder' => '51c7408*************ad45aa19d',
                         'desc'        => <<<html
-<ul>
-    <li>百度统计的ID获取方法参考：https://xxx.com</li>
-    <li style="display: none;">CNZZ统计的ID获取方法参考：https://xxx.com</li>
-    <li style="display: none;">谷歌统计的ID获取方法参考：https://xxx.com</li>
-    <li style="display: none;">必应统计的ID获取方法参考：https://xxx.com</li>
+<ul style="margin-top: 5px; color: #646970;">
+    <li>查看帮助：<a href="https://wptongji.com/blog/baidu-tongji">百度统计ID的获取方法</a></li>
+    <li>查看帮助：<a href="https://wptongji.com/blog/cnzz-tongji">CNZZ统计ID的获取方法</a></li>
+    <li>查看帮助：<a href="https://wptongji.com/blog/google-analytics">谷歌统计ID的获取方法</a></li>
+    <li>查看帮助：<a href="https://wptongji.com/blog/51la-tongji">51啦统计ID的获取方法</a></li>
 </ul>
 html
                     ),
